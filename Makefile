@@ -4,8 +4,9 @@ PROTOC = protoc
 
 OBJS = main.o debug.pb.o inputfile.o outputfile.o processmsg.o
 
-CFLAGS = -I./include
-LDFLAGS = -lprotobuf
+CFLAGS = -std=c++11 -I./include -I/usr/include
+LDFLAGS_PRE = -static -L/usr/local/lib -I/usr/lib
+LDFLAGS_POST = -lprotobuf
 
 %.o: %.cc
 	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
@@ -13,7 +14,7 @@ LDFLAGS = -lprotobuf
 all: decode
 
 decode: $(OBJS)
-	$(LD) $(LDFLAGS) $(OBJS) -o $@
+	$(LD) $(LDFLAGS_PRE) $(OBJS) -o $@ $(LDFLAGS_POST)
 
 main.o: debug.pb.h
 

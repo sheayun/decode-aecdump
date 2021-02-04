@@ -7,6 +7,7 @@
 #ifndef INPUTFILE_H_
 #define INPUTFILE_H_
 
+#include <memory>
 #include <string>
 #include <google/protobuf/message_lite.h>
 
